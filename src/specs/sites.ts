@@ -1,27 +1,22 @@
-// Per-site config. One entry per client site. The generator in reels.ts turns
-// each into a showcase reel + one FeatureFocus reel per listed feature.
-// imgHeight comes from public/captures/<slug>/height.txt after `npm run capture`.
-//
-// feature bands (startPct/endPct) are fractions of the full-page capture. Pick
-// them by eyeing public/captures/<slug>/full.png. Only list features the site
-// actually has. Nothing here is invented.
+// Per-site config. THIS IS THE ONE FILE YOU EDIT to add reels.
+// After `npm run capture`, put the printed imgHeight here, eye the full.png to
+// pick feature bands, and add any real testimonials/stats. The generator turns
+// each site into a full set of reels across all templates.
 
-export type FeatureBand = {
-  key: string;        // short id, used in the reel id
-  label: string;      // shown on screen, e.g. "Instant Quote, With A Photo"
-  startPct: number;
-  endPct: number;
-  benefit: string;    // the value line
-};
+export type FeatureBand = { key: string; label: string; startPct: number; endPct: number; benefit: string };
+export type Quote = { text: string; attribution: string };
+export type Stat = { value: string; label: string; kicker: string };
 
 export type SiteConfig = {
-  slug: string;       // matches public/captures/<slug>/
-  name: string;       // business name on screen
+  slug: string;
+  name: string;
   url: string;
-  imgHeight: number;  // from height.txt
-  kicker: string;     // showcase mono label, e.g. "Junk Removal, Metro Atlanta"
+  imgHeight: number;
+  kicker: string;
   showcaseHook: string;
   features: FeatureBand[];
+  quotes?: Quote[];   // real testimonials only
+  stats?: Stat[];     // true, defensible claims only
 };
 
 export const SITES: SiteConfig[] = [
@@ -35,11 +30,13 @@ export const SITES: SiteConfig[] = [
     features: [
       { key: 'estimate', label: 'Instant Quote, With A Photo', startPct: 0.052, endPct: 0.118,
         benefit: 'Customers get a real price in minutes. You get the lead the second they hit send.' },
-      // add more real bands after eyeing full.png:
-      // { key: 'areas', label: 'Every City You Serve', startPct: ?, endPct: ?, benefit: '...' },
-      // { key: 'reviews', label: 'Real Reviews, Front And Center', startPct: ?, endPct: ?, benefit: '...' },
+      { key: 'areas', label: 'Every City You Serve', startPct: 0.30, endPct: 0.36,
+        benefit: 'A page for each area, so search puts you on the map.' },
+      { key: 'reviews', label: 'Real Reviews, Up Front', startPct: 0.62, endPct: 0.70,
+        benefit: 'Proof from real customers, right where it counts.' },
+    ],
+    stats: [
+      { value: '2s', label: 'How fast a site should load before a customer leaves.', kicker: 'Speed Wins Jobs' },
     ],
   },
-  // more sites appended here after capture:
-  // { slug:'jblawn', name:'JB Lawn Care', url:'...', imgHeight:?, kicker:'...', showcaseHook:'...', features:[...] },
 ];
