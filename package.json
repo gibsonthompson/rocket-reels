@@ -4,13 +4,14 @@
   "private": true,
   "description": "Rocket Solutions Instagram reels. Real client sites as the subject.",
   "scripts": {
-    "dev": "remotion studio --port=3005",
-    "studio": "remotion studio --port=3005",
+    "dev": "remotion studio --port=3003",
+    "studio": "remotion studio --port=3003",
     "render": "remotion render",
-    "render:all": "remotion render src/index.ts --all --scale 1",
+    "render:all": "node scripts/render-all.mjs --scale 2",
     "still": "remotion still",
     "capture": "node scripts/capture.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "render:preview": "node scripts/render-all.mjs --scale 1"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",

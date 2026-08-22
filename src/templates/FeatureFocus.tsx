@@ -22,7 +22,7 @@ export const FeatureFocus: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
   const muted = onDark ? C.onDark2 : C.ink2;
   const f = spec.feature!;
 
-  const phoneW = 560, phoneH = 1120;
+  const phoneW = 500, phoneH = 940;
   const innerW = phoneW - 36, innerH = phoneH - 36;
 
   // capture geometry
@@ -48,7 +48,7 @@ export const FeatureFocus: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
       <Background mode={mode} />
 
       {/* top: kicker + feature label */}
-      <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top - 60, justifyContent: 'flex-start' }}>
+      <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top, justifyContent: 'flex-start' }}>
         <div style={entryStyle(enter(frame, fps, 2, 'entrance'), 'up', 18)}>
           <Kicker onDark={onDark}>{spec.kicker}</Kicker>
         </div>
@@ -64,7 +64,7 @@ export const FeatureFocus: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
       {/* phone with the cropped feature band */}
       <Sequence from={intro - 24}>
         <AbsoluteFill style={{ opacity: lerp(enter(frame, fps, intro - 24, 'smooth'), [0, 1]) }}>
-          <PhoneFrame width={phoneW} height={phoneH} y={phoneRise - 30}>
+          <PhoneFrame width={phoneW} height={phoneH} y={phoneRise - 60}>
             <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
               <Img src={staticFile(spec.site.capture)} style={{
                 position: 'absolute', top: 0, left: 0, width: innerW,
@@ -77,9 +77,9 @@ export const FeatureFocus: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
 
       {/* bottom: the benefit line, over a scrim so it never fights the phone */}
       <AbsoluteFill style={{ justifyContent: 'flex-end' }}>
-        <div style={{ height: 520, background: onDark ? 'linear-gradient(transparent, #0E0E10 55%)' : 'linear-gradient(transparent, #F4F3F0 55%)' }} />
+        <div style={{ height: 640, background: onDark ? 'linear-gradient(transparent, #0E0E10 55%)' : 'linear-gradient(transparent, #F4F3F0 55%)' }} />
       </AbsoluteFill>
-      <AbsoluteFill style={{ justifyContent: 'flex-end', padding: SAFE.sides, paddingBottom: SAFE.bottom - 90 }}>
+      <AbsoluteFill style={{ justifyContent: 'flex-end', padding: SAFE.sides, paddingBottom: SAFE.bottom }}>
         <div style={{
           fontFamily: F.display, fontWeight: 600, fontSize: 52, lineHeight: 1.1,
           letterSpacing: '-0.02em', color: text, maxWidth: '16em',

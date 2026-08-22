@@ -21,7 +21,9 @@ export const C = {
 } as const;
 
 export const CANVAS = { width: 1080, height: 1920, fps: 30 } as const;
-export const SAFE = { top: 160, bottom: 260, sides: 72 } as const;
+// Instagram Reels safe zones: top ~220 (avatar/name), bottom ~320 (caption,
+// audio, action rail), sides ~90 (right action buttons). Keep all content inside.
+export const SAFE = { top: 220, bottom: 340, sides: 90 } as const;
 export const FONT_MIN = { headline: 56, body: 34, label: 28 } as const;
 
 export const LOGO = {

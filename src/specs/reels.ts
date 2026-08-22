@@ -1,31 +1,39 @@
 import type { ReelSpec } from '../engine/schema';
+import { SITES } from './sites';
 
-// imgHeight = natural px height of public/captures/<slug>/full.png (see height.txt).
-export const REELS: ReelSpec[] = [
-  {
-    id: 'haulitall-showcase',
-    template: 'Showcase',
-    site: { name: 'Haul It All', capture: 'captures/haulitall/full.png', imgHeight: 34208, url: 'https://haul-it-all.vercel.app' },
-    hook: 'A site that turns visitors into booked jobs.',
-    kicker: 'Junk Removal, Metro Atlanta',
-    cta: 'We build sites like this.',
-    durationInFrames: 540,
-    mode: 'dark',
-  },
-  {
-    id: 'haulitall-estimate',
-    template: 'FeatureFocus',
-    site: { name: 'Haul It All', capture: 'captures/haulitall/full.png', imgHeight: 34208, url: 'https://haul-it-all.vercel.app' },
-    hook: '',
-    kicker: 'The Feature That Wins Jobs',
-    cta: '',
-    durationInFrames: 300,
-    mode: 'dark',
-    feature: {
-      label: 'Instant Quote, With A Photo',
-      startPct: 0.052,
-      endPct: 0.118,
-      benefit: 'Customers get a real price in minutes. You get the lead the second they hit send.',
-    },
-  },
-];
+// Durations (frames @30fps)
+const SHOWCASE = 540;   // 18s
+const FEATURE = 300;    // 10s
+
+// Generate all reels from the site configs: one showcase + one per feature.
+function build(): ReelSpec[] {
+  const out: ReelSpec[] = [];
+  for (const s of SITES) {
+    out.push({
+      id: `${s.slug}-showcase`,
+      template: 'Showcase',
+      site: { name: s.name, capture: `captures/${s.slug}/full.png`, imgHeight: s.imgHeight, url: s.url },
+      hook: s.showcaseHook,
+      kicker: s.kicker,
+      cta: 'We build sites like this.',
+      durationInFrames: SHOWCASE,
+      mode: 'dark',
+    });
+    for (const f of s.features) {
+      out.push({
+        id: `${s.slug}-${f.key}`,
+        template: 'FeatureFocus',
+        site: { name: s.name, capture: `captures/${s.slug}/full.png`, imgHeight: s.imgHeight, url: s.url },
+        hook: '',
+        kicker: 'The Feature That Wins Jobs',
+        cta: '',
+        durationInFrames: FEATURE,
+        mode: 'dark',
+        feature: f,
+      });
+    }
+  }
+  return out;
+}
+
+export const REELS: ReelSpec[] = build();
