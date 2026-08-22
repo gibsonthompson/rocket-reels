@@ -47,8 +47,14 @@ export const StatLine: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
       </AbsoluteFill>
 
       <AbsoluteFill style={{ justifyContent: 'flex-end', padding: SAFE.sides, paddingBottom: SAFE.bottom }}>
-        <Img src={staticFile(onDark ? LOGO.lockupLight : LOGO.lockupDark)}
-             style={{ width: 360, ...entryStyle(enter(frame, fps, outroStart - 20, 'smooth'), 'up', 18) }} />
+        <div style={{ ...entryStyle(enter(frame, fps, outroStart - 20, 'smooth'), 'up', 18) }}>
+          <Img src={staticFile(onDark ? LOGO.lockupLight : LOGO.lockupDark)} style={{ width: 360 }} />
+          {spec.site.displayUrl ? (
+            <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 24, color: onDark ? C.onDark2 : C.ink2, marginTop: 14 }}>
+              {spec.site.displayUrl}
+            </div>
+          ) : null}
+        </div>
       </AbsoluteFill>
     </AbsoluteFill>
   );

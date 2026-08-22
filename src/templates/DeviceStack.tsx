@@ -4,7 +4,7 @@ import { C, SAFE, FONT_MIN, LOGO } from '../brand/tokens';
 import { F } from '../brand/fonts';
 import { enter, entryStyle, lerp, drift } from '../engine/motion';
 import { Background } from '../components/Background';
-import { Kicker } from '../components/Kicker';
+import { Signature } from '../components/Signature';
 import type { ReelSpec } from '../engine/schema';
 
 /**
@@ -22,9 +22,10 @@ export const DeviceStack: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
   const scale = iw / 860;
   const scaledH = spec.site.imgHeight * scale;
 
-  // two offsets into the page
-  const yA = 0.10 * scaledH + drift(frame, 8, 150);
-  const yB = 0.42 * scaledH + drift(frame + 40, 8, 150);
+  // front phone shows the homepage hero (top); back shows a shallow second view.
+  // Both stay near the top so the site is recognizable, not deep-page sections.
+  const yA = 0.00 * scaledH + drift(frame, 6, 160);
+  const yB = 0.14 * scaledH + drift(frame + 40, 6, 160);
 
   const inA = enter(frame, fps, 6, 'entrance');
   const inB = enter(frame, fps, 16, 'entrance');
@@ -49,7 +50,7 @@ export const DeviceStack: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
 
       <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top, justifyContent: 'flex-start' }}>
         <div style={entryStyle(enter(frame, fps, 2, 'entrance'), 'up', 16)}>
-          <Kicker onDark={onDark}>Built by Rocket Solutions</Kicker>
+          <Signature onDark={onDark} displayUrl={spec.site.displayUrl} />
         </div>
         <div style={{ fontFamily: F.display, fontWeight: 700, fontSize: 72, lineHeight: 1.03,
           letterSpacing: '-0.03em', color: text, marginTop: 20, maxWidth: '14em',
@@ -64,10 +65,15 @@ export const DeviceStack: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
       </AbsoluteFill>
 
       <AbsoluteFill style={{ justifyContent: 'flex-end', padding: SAFE.sides, paddingBottom: SAFE.bottom }}>
-        <div style={{ fontFamily: F.mono, fontSize: FONT_MIN.label, letterSpacing: '0.08em',
-          textTransform: 'uppercase', color: onDark ? C.redOnDark : C.red,
-          ...entryStyle(enter(frame, fps, outroStart - 20, 'smooth'), 'up', 16) }}>
-          {spec.site.name} · gorocketsolutions.com
+        <div style={{ ...entryStyle(enter(frame, fps, outroStart - 20, 'smooth'), 'up', 16) }}>
+          <div style={{ fontFamily: F.display, fontWeight: 700, fontSize: 46, letterSpacing: '-0.02em', color: text }}>
+            {spec.site.name}
+          </div>
+          {spec.site.displayUrl ? (
+            <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 26, color: onDark ? C.onDark2 : C.ink2, marginTop: 6 }}>
+              {spec.site.displayUrl}
+            </div>
+          ) : null}
         </div>
       </AbsoluteFill>
     </AbsoluteFill>

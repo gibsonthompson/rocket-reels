@@ -5,7 +5,7 @@ import { F } from '../brand/fonts';
 import { enter, entryStyle, lerp, drift } from '../engine/motion';
 import { Background } from '../components/Background';
 import { PhoneFrame } from '../components/PhoneFrame';
-import { Kicker } from '../components/Kicker';
+import { Signature } from '../components/Signature';
 import type { ReelSpec, Band } from '../engine/schema';
 
 /**
@@ -35,7 +35,7 @@ export const MultiFeature: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
       {/* persistent top rail */}
       <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top, justifyContent: 'flex-start' }}>
         <div style={entryStyle(enter(frame, fps, 2, 'entrance'), 'up', 16)}>
-          <Kicker onDark={onDark}>{spec.site.name} · Built by Rocket Solutions</Kicker>
+          <Signature onDark={onDark} displayUrl={spec.site.displayUrl} />
         </div>
       </AbsoluteFill>
 

@@ -5,6 +5,7 @@ export type SiteRef = {
   capture: string;     // 'captures/<slug>/full.png'
   imgHeight: number;   // natural px height of the capture
   url?: string;
+  displayUrl?: string; // real domain to show on screen; omit for vercel-only
 };
 
 export type Band = {

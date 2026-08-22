@@ -12,6 +12,7 @@ export type SiteConfig = {
   name: string;
   url: string;
   imgHeight: number;
+  displayUrl?: string;   // real domain shown on screen; omit if only a vercel.app URL exists
   kicker: string;
   showcaseHook: string;
   features: FeatureBand[];
@@ -27,7 +28,7 @@ export type SiteConfig = {
 export const SITES: SiteConfig[] = [
   {
     slug: 'haulitall', name: 'Haul It All', url: 'https://haul-it-all.vercel.app',
-    imgHeight: 34208, kicker: 'Junk Removal, Metro Atlanta',
+    imgHeight: 34208, kicker: 'Junk Removal, Metro Atlanta', displayUrl: 'choosehaulitall.com',
     showcaseHook: 'A site that turns visitors into booked jobs.',
     features: [
       { key: 'estimate', label: 'Instant Quote, With A Photo', startPct: 0.052, endPct: 0.118,
@@ -51,19 +52,19 @@ export const SITES: SiteConfig[] = [
   },
   {
     slug: 'eastwood', name: 'Eastwood', url: 'https://eastwood-site.vercel.app',
-    imgHeight: 30782, kicker: 'Home Services',
+    imgHeight: 30782, kicker: 'Home Services', displayUrl: 'eastwoodphc.com',
     showcaseHook: 'A site that looks as good as the work.',
     features: [],
   },
   {
     slug: 'southern', name: 'Southern Beacon', url: 'https://southern-beacon.vercel.app',
-    imgHeight: 29274, kicker: 'Service Business',
+    imgHeight: 29274, kicker: 'Service Business', displayUrl: 'southernbeaconenvironmental.com',
     showcaseHook: 'Built to be found and built to convert.',
     features: [],
   },
   {
     slug: 'globalmax', name: 'Global Max Services', url: 'https://global-max-services.vercel.app',
-    imgHeight: 27704, kicker: 'Service Business',
+    imgHeight: 27704, kicker: 'Service Business', displayUrl: 'globalmaxservices.com',
     showcaseHook: 'A site that works as hard as the crew.',
     features: [],
   },
@@ -75,13 +76,13 @@ export const SITES: SiteConfig[] = [
   },
   {
     slug: 'cocina', name: 'La Cocina de Jeannie', url: 'https://la-cocina-de-jeannie.vercel.app',
-    imgHeight: 19078, kicker: 'Restaurant',
+    imgHeight: 19078, kicker: 'Restaurant', displayUrl: 'jeannieandco.com',
     showcaseHook: 'A menu that makes them hungry.',
     features: [],
   },
   {
     slug: 'gtc', name: 'The GTC Group', url: 'https://gtc-group-website.vercel.app',
-    imgHeight: 11616, kicker: 'Logistics Advisory',
+    imgHeight: 11616, kicker: 'Logistics Advisory', displayUrl: 'gtcadvisers.com',
     showcaseHook: 'A site that closes carrier deals.',
     features: [],
     stats: [
@@ -90,7 +91,7 @@ export const SITES: SiteConfig[] = [
   },
   {
     slug: 'rsa', name: 'Reliable Solutions Atlanta', url: 'https://reliable-solutions-atlanta.vercel.app',
-    imgHeight: 15488, kicker: 'Waterproofing, Atlanta',
+    imgHeight: 15488, kicker: 'Waterproofing, Atlanta', displayUrl: 'waterhelpme.com',
     showcaseHook: 'A site that turns a leak into a lead.',
     features: [
       { key: 'quote', label: 'Request A Free Quote', startPct: 0.055, endPct: 0.128,

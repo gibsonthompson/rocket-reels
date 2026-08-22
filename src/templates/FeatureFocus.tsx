@@ -6,6 +6,7 @@ import { enter, entryStyle, lerp, drift } from '../engine/motion';
 import { Background } from '../components/Background';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { Kicker } from '../components/Kicker';
+import { Signature } from '../components/Signature';
 import type { ReelSpec } from '../engine/schema';
 
 /**
@@ -87,12 +88,8 @@ export const FeatureFocus: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
         }}>
           {f.benefit}
         </div>
-        <div style={{
-          fontFamily: F.mono, fontSize: FONT_MIN.label, letterSpacing: '0.1em', textTransform: 'uppercase',
-          color: onDark ? C.redOnDark : C.red, marginTop: 20,
-          ...entryStyle(enter(frame, fps, intro + 20, 'smooth'), 'up', 16),
-        }}>
-          {spec.site.name} · Built by Rocket Solutions
+        <div style={{ marginTop: 22, ...entryStyle(enter(frame, fps, intro + 20, 'smooth'), 'up', 16) }}>
+          <Signature onDark={onDark} displayUrl={spec.site.displayUrl} />
         </div>
       </AbsoluteFill>
     </AbsoluteFill>

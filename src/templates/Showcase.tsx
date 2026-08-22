@@ -6,7 +6,7 @@ import { enter, entryStyle, lerp, drift } from '../engine/motion';
 import { Background } from '../components/Background';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { SiteScroll } from '../components/SiteScroll';
-import { Kicker } from '../components/Kicker';
+import { Signature } from '../components/Signature';
 import type { ReelSpec } from '../engine/schema';
 
 /**
@@ -25,7 +25,7 @@ export const Showcase: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
   const outroStart = durationInFrames - 66;
 
   // phone geometry
-  const phoneW = 620, phoneH = 1300;
+  const phoneW = 560, phoneH = 1120;
   const innerW = phoneW - 36, innerH = phoneH - 36;
 
   // phone entrance during intro, hold during scroll, settles
@@ -39,7 +39,7 @@ export const Showcase: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
       {/* PHONE with scrolling site, present after intro */}
       <Sequence from={introEnd}>
         <AbsoluteFill style={{ opacity: lerp(enter(frame, fps, introEnd, 'smooth'), [0, 1]) }}>
-          <PhoneFrame width={phoneW} height={phoneH} y={phoneY - 40}>
+          <PhoneFrame width={phoneW} height={phoneH} y={phoneY - 120}>
             <SiteScroll
               src={spec.site.capture}
               frameWidth={innerW}
@@ -52,10 +52,10 @@ export const Showcase: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
         </AbsoluteFill>
       </Sequence>
 
-      {/* top label rail, persistent */}
+      {/* top signature, persistent */}
       <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top, justifyContent: 'flex-start' }}>
         <div style={entryStyle(enter(frame, fps, 4, 'entrance'), 'up', 20)}>
-          <Kicker onDark={onDark}>Built by Rocket Solutions</Kicker>
+          <Signature onDark={onDark} displayUrl={spec.site.displayUrl} />
         </div>
       </AbsoluteFill>
 
@@ -75,11 +75,14 @@ export const Showcase: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
         </AbsoluteFill>
       </Sequence>
 
-      {/* bottom name plate during scroll */}
+      {/* bottom name plate during scroll, over a scrim so it never fights the phone */}
       <Sequence from={introEnd} durationInFrames={outroStart - introEnd}>
+        <AbsoluteFill style={{ justifyContent: 'flex-end' }}>
+          <div style={{ height: 560, background: onDark ? 'linear-gradient(transparent, #0E0E10 62%)' : 'linear-gradient(transparent, #F4F3F0 62%)' }} />
+        </AbsoluteFill>
         <AbsoluteFill style={{ justifyContent: 'flex-end', padding: SAFE.sides, paddingBottom: SAFE.bottom }}>
           <div style={{ ...entryStyle(enter(frame - introEnd, fps, 6, 'entrance'), 'up', 24) }}>
-            <div style={{ fontFamily: F.mono, fontSize: FONT_MIN.label, letterSpacing: '0.08em', textTransform: 'uppercase', color: muted, marginBottom: 10 }}>
+            <div style={{ fontFamily: F.body, fontSize: 30, fontWeight: 500, color: muted, marginBottom: 8 }}>
               {spec.kicker}
             </div>
             <div style={{ fontFamily: F.display, fontWeight: 700, fontSize: 62, letterSpacing: '-0.02em', color: text }}>
