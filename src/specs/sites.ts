@@ -40,19 +40,19 @@ export const SITES: SiteConfig[] = [
   },
   {
     slug: 'jblawn', name: 'JB Lawn Care & Hauling', url: 'https://jblawn.vercel.app',
-    imgHeight: 33368, kicker: 'Lawn Care, East Bay',
+    imgHeight: 33368, kicker: 'Lawn Care, East Bay', displayUrl: 'jblawncareandhauling.com',
     showcaseHook: 'Lawn care that books the job while you work.',
     features: [],
   },
   {
     slug: 'greenline', name: 'Green Line Lawn Care', url: 'https://greenline.vercel.app',
-    imgHeight: 9404, kicker: 'Lawn Care',
+    imgHeight: 9404, kicker: 'Lawn Care', displayUrl: 'greenlinelawncarellc.com',
     showcaseHook: 'Clean, fast, and built to convert.',
     features: [],
   },
   {
     slug: 'eastwood', name: 'Eastwood', url: 'https://eastwood-site.vercel.app',
-    imgHeight: 30782, kicker: 'Home Services', displayUrl: 'eastwoodphc.com',
+    imgHeight: 30782, kicker: 'Home Services', 
     showcaseHook: 'A site that looks as good as the work.',
     features: [],
   },
@@ -76,13 +76,13 @@ export const SITES: SiteConfig[] = [
   },
   {
     slug: 'cocina', name: 'La Cocina de Jeannie', url: 'https://la-cocina-de-jeannie.vercel.app',
-    imgHeight: 19078, kicker: 'Restaurant', displayUrl: 'jeannieandco.com',
+    imgHeight: 19078, kicker: 'Restaurant', 
     showcaseHook: 'A menu that makes them hungry.',
     features: [],
   },
   {
     slug: 'gtc', name: 'The GTC Group', url: 'https://gtc-group-website.vercel.app',
-    imgHeight: 11616, kicker: 'Logistics Advisory', displayUrl: 'gtcadvisers.com',
+    imgHeight: 11616, kicker: 'Logistics Advisory', displayUrl: 'globaltransportconsultinggroup.com',
     showcaseHook: 'A site that closes carrier deals.',
     features: [],
     stats: [
@@ -101,9 +101,9 @@ export const SITES: SiteConfig[] = [
     ],
   },
   {
-    slug: 'ssp', name: 'SSP', url: 'https://ssp-website.vercel.app',
-    imgHeight: 10690, kicker: 'Service Business',
-    showcaseHook: 'Clean, fast, and built to convert.',
+    slug: 'strickland', name: 'Strickland Surface Preparation', url: 'https://www.stricklandsurfacepreparation.com/',
+    imgHeight: 15148, kicker: 'Abrasive Blasting, Hall County GA', displayUrl: 'stricklandsurfacepreparation.com',
+    showcaseHook: 'A site that brings the job to the crew.',
     features: [],
   },
 ];

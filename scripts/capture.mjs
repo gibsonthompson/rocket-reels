@@ -10,17 +10,17 @@ import fs from 'fs';
 import path from 'path';
 
 const SITES = [
-  { slug: 'haulitall', url: 'https://haul-it-all.vercel.app' },
-  { slug: 'jblawn',    url: 'https://jblawn.vercel.app' },
-  { slug: 'greenline', url: 'https://greenline.vercel.app' },
-  { slug: 'eastwood',  url: 'https://eastwood-site.vercel.app' },
-  { slug: 'southern',  url: 'https://southern-beacon.vercel.app' },
-  { slug: 'globalmax', url: 'https://global-max-services.vercel.app' },
-  { slug: 'deadhead',  url: 'https://deadhead-trucking.vercel.app' },
-  { slug: 'cocina',    url: 'https://la-cocina-de-jeannie.vercel.app' },
-  { slug: 'gtc',       url: 'https://gtc-group-website.vercel.app' },
-  { slug: 'rsa',       url: 'https://reliable-solutions-atlanta.vercel.app' },
-  { slug: 'ssp',       url: 'https://ssp-website.vercel.app' },
+  { slug: 'haulitall',  url: 'https://haul-it-all.vercel.app' },
+  { slug: 'jblawn',     url: 'https://jblawn.vercel.app' },
+  { slug: 'greenline',  url: 'https://greenline.vercel.app' },
+  { slug: 'eastwood',   url: 'https://eastwood-site.vercel.app' },
+  { slug: 'southern',   url: 'https://southern-beacon.vercel.app' },
+  { slug: 'globalmax',  url: 'https://global-max-services.vercel.app' },
+  { slug: 'deadhead',   url: 'https://deadhead-trucking.vercel.app' },
+  { slug: 'cocina',     url: 'https://la-cocina-de-jeannie.vercel.app' },
+  { slug: 'gtc',        url: 'https://gtc-group-website.vercel.app' },
+  { slug: 'rsa',        url: 'https://reliable-solutions-atlanta.vercel.app' },
+  { slug: 'strickland', url: 'https://www.stricklandsurfacepreparation.com/' },
 ];
 
 const OUT = path.join(process.cwd(), 'public', 'captures');
