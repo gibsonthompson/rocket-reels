@@ -12,7 +12,7 @@ import path from 'path';
 const SITES = [
   { slug: 'haulitall',  url: 'https://haul-it-all.vercel.app' },
   { slug: 'jblawn',     url: 'https://jblawn.vercel.app' },
-  { slug: 'greenline',  url: 'https://greenline.vercel.app' },
+  { slug: 'greenline',  url: 'https://www.greenlinelawncarellc.com/' },
   { slug: 'eastwood',   url: 'https://eastwood-site.vercel.app' },
   { slug: 'southern',   url: 'https://southern-beacon.vercel.app' },
   { slug: 'globalmax',  url: 'https://global-max-services.vercel.app' },

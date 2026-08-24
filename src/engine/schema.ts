@@ -1,3 +1,5 @@
+export type CopyBackend = 'pools' | 'ai';
+
 export type TemplateId = 'Showcase' | 'FeatureFocus' | 'MultiFeature' | 'DeviceStack' | 'QuoteReveal' | 'StatLine';
 
 export type SiteRef = {
