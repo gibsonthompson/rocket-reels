@@ -4,30 +4,31 @@ import { C, LOGO } from '../brand/tokens';
 import { F } from '../brand/fonts';
 
 /**
- * A natural credit line: the small Rocket icon + "Rocket Solutions", optionally
- * the site's real domain. Reads like a signature/credit, not a tracked-out
- * mono kicker (which looked templated). Use at top or bottom of a reel.
+ * Rocket Solutions credit line: the icon + "Rocket Solutions" + gorocketsolutions.com.
+ * This ALWAYS shows Rocket's own domain, never the client's. The client's domain
+ * goes under the business name on the reel (see the name plate in each template).
  */
 export const Signature: React.FC<{
   onDark?: boolean;
-  displayUrl?: string;
   align?: 'left' | 'center';
-}> = ({ onDark = true, displayUrl, align = 'left' }) => {
+  size?: 'normal' | 'large';
+}> = ({ onDark = true, align = 'left', size = 'normal' }) => {
   const text = onDark ? C.onDark : C.ink;
   const muted = onDark ? C.onDark2 : C.ink2;
+  const icon = size === 'large' ? 76 : 60;
+  const name = size === 'large' ? 46 : 38;
+  const url = size === 'large' ? 32 : 27;
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 14,
+    <div style={{ display: 'flex', alignItems: 'center', gap: 20,
       justifyContent: align === 'center' ? 'center' : 'flex-start' }}>
-      <Img src={staticFile(LOGO.icon)} style={{ height: 40, width: 'auto' }} />
-      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.05 }}>
-        <span style={{ fontFamily: F.display, fontWeight: 600, fontSize: 30, letterSpacing: '-0.01em', color: text }}>
+      <Img src={staticFile(LOGO.icon)} style={{ height: icon, width: 'auto' }} />
+      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.06 }}>
+        <span style={{ fontFamily: F.display, fontWeight: 700, fontSize: name, letterSpacing: '-0.015em', color: text }}>
           Rocket Solutions
         </span>
-        {displayUrl ? (
-          <span style={{ fontFamily: F.body, fontWeight: 500, fontSize: 24, color: muted }}>
-            {displayUrl}
-          </span>
-        ) : null}
+        <span style={{ fontFamily: F.body, fontWeight: 500, fontSize: url, color: muted }}>
+          gorocketsolutions.com
+        </span>
       </div>
     </div>
   );

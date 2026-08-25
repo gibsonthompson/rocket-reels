@@ -50,7 +50,7 @@ export const DeviceStack: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
 
       <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top, justifyContent: 'flex-start' }}>
         <div style={entryStyle(enter(frame, fps, 2, 'entrance'), 'up', 16)}>
-          <Signature onDark={onDark} displayUrl={spec.site.displayUrl} />
+          <Signature onDark={onDark} size="large" />
         </div>
         <div style={{ fontFamily: F.display, fontWeight: 700, fontSize: 72, lineHeight: 1.03,
           letterSpacing: '-0.03em', color: text, marginTop: 20, maxWidth: '14em',

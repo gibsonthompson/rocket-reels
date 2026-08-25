@@ -1,18 +1,14 @@
 import React from 'react';
 import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Sequence } from 'remotion';
-import { C, SAFE, FONT_MIN, LOGO, CANVAS } from '../brand/tokens';
+import { C, SAFE, FONT_MIN, LOGO } from '../brand/tokens';
 import { F } from '../brand/fonts';
 import { enter, entryStyle, lerp, drift } from '../engine/motion';
+import { LAYOUT } from '../engine/layout';
 import { Background } from '../components/Background';
-import { PhoneFrame } from '../components/PhoneFrame';
 import { SiteScroll } from '../components/SiteScroll';
 import { Signature } from '../components/Signature';
 import type { ReelSpec } from '../engine/schema';
 
-/**
- * Showcase: a real client site scrolling in a phone frame is the subject.
- * Intro card -> phone rises and scrolls the site -> outro CTA card.
- */
 export const Showcase: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
@@ -21,48 +17,47 @@ export const Showcase: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
   const text = onDark ? C.onDark : C.ink;
   const muted = onDark ? C.onDark2 : C.ink2;
 
-  const introEnd = 78;    // ~2.6s intro, headline fully clears before phone
+  const introEnd = 78;
   const outroStart = durationInFrames - 66;
 
-  // phone geometry
-  const phoneW = 560, phoneH = 1120;
+  const Z = LAYOUT.showcase;
+  const phoneW = 540;
+  const phoneH = Z.phoneH;
   const innerW = phoneW - 36, innerH = phoneH - 36;
 
-  // phone entrance during intro, hold during scroll, settles
   const pIn = enter(frame, fps, introEnd, 'smooth');
-  const phoneY = lerp(pIn, [220, 0]) + drift(frame, 5, 120);
+  const phoneDrift = lerp(pIn, [60, 0]) + drift(frame, 4, 130);
 
   return (
     <AbsoluteFill>
       <Background mode={mode} />
 
-      {/* PHONE with scrolling site, present after intro */}
       <Sequence from={introEnd}>
         <AbsoluteFill style={{ opacity: lerp(enter(frame, fps, introEnd, 'smooth'), [0, 1]) }}>
-          <PhoneFrame width={phoneW} height={phoneH} y={phoneY - 120}>
-            <SiteScroll
-              src={spec.site.capture}
-              frameWidth={innerW}
-              frameHeight={innerH}
-              imgHeight={spec.site.imgHeight}
-              hold={12}
-              tail={70}
-            />
-          </PhoneFrame>
+          <div style={{
+            position: 'absolute', top: Z.phoneTop, left: '50%',
+            transform: `translateX(-50%) translateY(${phoneDrift}px)`,
+            width: phoneW, height: phoneH,
+            borderRadius: 50, background: '#0A0A0C', padding: 18,
+            boxShadow: '0 60px 120px -30px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04)',
+          }}>
+            <div style={{ width: '100%', height: '100%', borderRadius: 36, overflow: 'hidden', background: C.paper, position: 'relative' }}>
+              <SiteScroll src={spec.site.capture} frameWidth={innerW} frameHeight={innerH}
+                imgHeight={spec.site.imgHeight} hold={12} tail={70} />
+            </div>
+          </div>
         </AbsoluteFill>
       </Sequence>
 
-      {/* top signature, persistent */}
       <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top, justifyContent: 'flex-start' }}>
         <div style={entryStyle(enter(frame, fps, 4, 'entrance'), 'up', 20)}>
-          <Signature onDark={onDark} displayUrl={spec.site.displayUrl} />
+          <Signature onDark={onDark} size="large" />
         </div>
       </AbsoluteFill>
 
-      {/* INTRO headline, fades before phone dominates */}
       <Sequence durationInFrames={introEnd}>
         <AbsoluteFill style={{
-          padding: SAFE.sides, paddingLeft: SAFE.sides + 6, paddingRight: SAFE.sides + 6, justifyContent: 'center',
+          padding: SAFE.sides, justifyContent: 'center',
           opacity: lerp(enter(frame, fps, 0, 'smooth'), [0, 1]) * (1 - lerp((frame - (introEnd - 30)) / 22, [0, 1])),
         }}>
           <h1 style={{
@@ -75,24 +70,28 @@ export const Showcase: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
         </AbsoluteFill>
       </Sequence>
 
-      {/* bottom name plate during scroll, over a scrim so it never fights the phone */}
       <Sequence from={introEnd} durationInFrames={outroStart - introEnd}>
         <AbsoluteFill style={{ justifyContent: 'flex-end' }}>
-          <div style={{ height: 560, background: onDark ? 'linear-gradient(transparent, #0E0E10 62%)' : 'linear-gradient(transparent, #F4F3F0 62%)' }} />
+          <div style={{ height: 520, background: onDark ? 'linear-gradient(transparent, #0E0E10 66%)' : 'linear-gradient(transparent, #F4F3F0 66%)' }} />
         </AbsoluteFill>
-        <AbsoluteFill style={{ justifyContent: 'flex-end', padding: SAFE.sides, paddingBottom: SAFE.bottom }}>
-          <div style={{ ...entryStyle(enter(frame - introEnd, fps, 6, 'entrance'), 'up', 24) }}>
+        <AbsoluteFill>
+          <div style={{ position: 'absolute', top: Z.bottomTop, left: SAFE.sides, right: SAFE.sides,
+            ...entryStyle(enter(frame - introEnd, fps, 6, 'entrance'), 'up', 24) }}>
             <div style={{ fontFamily: F.body, fontSize: 30, fontWeight: 500, color: muted, marginBottom: 8 }}>
               {spec.kicker}
             </div>
             <div style={{ fontFamily: F.display, fontWeight: 700, fontSize: 62, letterSpacing: '-0.02em', color: text }}>
               {spec.site.name}
             </div>
+            {spec.site.displayUrl ? (
+              <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 30, color: muted, marginTop: 8 }}>
+                {spec.site.displayUrl}
+              </div>
+            ) : null}
           </div>
         </AbsoluteFill>
       </Sequence>
 
-      {/* OUTRO CTA */}
       <Sequence from={outroStart}>
         <AbsoluteFill style={{
           background: onDark ? C.dark : C.paper,

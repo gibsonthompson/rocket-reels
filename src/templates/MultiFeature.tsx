@@ -3,6 +3,7 @@ import { AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig, Sequenc
 import { C, SAFE, FONT_MIN } from '../brand/tokens';
 import { F } from '../brand/fonts';
 import { enter, entryStyle, lerp, drift } from '../engine/motion';
+import { LAYOUT } from '../engine/layout';
 import { Background } from '../components/Background';
 import { PhoneFrame } from '../components/PhoneFrame';
 import { Signature } from '../components/Signature';
@@ -20,8 +21,8 @@ export const MultiFeature: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
   const bands = spec.features ?? [];
   const n = Math.max(1, bands.length);
 
-  const phoneW = 460, phoneH = 820;
-  const innerW = phoneW - 36;
+  const phoneW = 440, phoneH = LAYOUT.multi.phoneH;
+  const innerW = phoneW - 32;
   const capW = 860;
   const scale = innerW / capW;
   const scaledH = spec.site.imgHeight * scale;
@@ -35,7 +36,7 @@ export const MultiFeature: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
       {/* persistent top rail */}
       <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top, justifyContent: 'flex-start' }}>
         <div style={entryStyle(enter(frame, fps, 2, 'entrance'), 'up', 16)}>
-          <Signature onDark={onDark} displayUrl={spec.site.displayUrl} />
+          <Signature onDark={onDark} size="large" />
         </div>
       </AbsoluteFill>
 
@@ -70,7 +71,7 @@ const MultiSlide: React.FC<{
   return (
     <AbsoluteFill style={{ opacity: Math.min(lerp(inn, [0, 1]), out) }}>
       {/* progress dots */}
-      <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top + 46, justifyContent: 'flex-start' }}>
+      <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top + 128, justifyContent: 'flex-start' }}>
         <div style={{ display: 'flex', gap: 8 }}>
           {Array.from({ length: total }).map((_, k) => (
             <div key={k} style={{ width: k === idx ? 30 : 12, height: 6, borderRadius: 3,
@@ -79,7 +80,7 @@ const MultiSlide: React.FC<{
         </div>
       </AbsoluteFill>
 
-      <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top + 86, justifyContent: 'flex-start' }}>
+      <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top + 168, justifyContent: 'flex-start' }}>
         <div style={{ fontFamily: F.display, fontWeight: 700, fontSize: 64, lineHeight: 1.03,
           letterSpacing: '-0.03em', color: text, maxWidth: '15em',
           ...entryStyle(enter(frame, fps, 4, 'smooth'), 'up', 22) }}>
@@ -87,13 +88,15 @@ const MultiSlide: React.FC<{
         </div>
       </AbsoluteFill>
 
-      <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', marginTop: 120 }}>
-        <PhoneFrame width={phoneW} height={phoneH} y={-40 + drift(frame, 4, 120)}>
-          <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-            <Img src={staticFile(capture)}
-                 style={{ position: 'absolute', top: 0, left: 0, width: innerW, transform: `translateY(-${y}px)` }} />
+      <AbsoluteFill>
+        <div style={{ position: 'absolute', top: LAYOUT.multi.phoneTop, left: '50%',
+          transform: `translateX(-50%) translateY(${drift(frame, 4, 120)}px)`,
+          width: phoneW, height: phoneH, borderRadius: 44, background: '#0A0A0C', padding: 16,
+          boxShadow: '0 50px 100px -25px rgba(0,0,0,0.6)' }}>
+          <div style={{ width: '100%', height: '100%', borderRadius: 30, overflow: 'hidden', background: '#F4F3F0', position: 'relative' }}>
+            <Img src={staticFile(capture)} style={{ position: 'absolute', top: 0, left: 0, width: innerW, transform: `translateY(-${y}px)` }} />
           </div>
-        </PhoneFrame>
+        </div>
       </AbsoluteFill>
 
       <AbsoluteFill style={{ justifyContent: 'flex-end' }}>
