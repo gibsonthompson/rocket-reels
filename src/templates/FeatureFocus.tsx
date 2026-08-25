@@ -5,7 +5,6 @@ import { F } from '../brand/fonts';
 import { enter, entryStyle, lerp, drift } from '../engine/motion';
 import { LAYOUT } from '../engine/layout';
 import { Background } from '../components/Background';
-import { Kicker } from '../components/Kicker';
 import { Signature } from '../components/Signature';
 import type { ReelSpec } from '../engine/schema';
 
@@ -47,8 +46,9 @@ export const FeatureFocus: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
 
       {/* TOP: kicker + label */}
       <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top, justifyContent: 'flex-start' }}>
-        <div style={entryStyle(enter(frame, fps, 2, 'entrance'), 'up', 18)}>
-          <Kicker onDark={onDark}>{spec.kicker}</Kicker>
+        <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 30, letterSpacing: '-0.01em',
+          color: onDark ? C.redOnDark : C.red, ...entryStyle(enter(frame, fps, 2, 'entrance'), 'up', 18) }}>
+          {spec.kicker}
         </div>
         <div style={{
           fontFamily: F.display, fontWeight: 700, fontSize: 76, lineHeight: 1.03,

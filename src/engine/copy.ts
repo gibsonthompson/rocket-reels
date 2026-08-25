@@ -60,21 +60,19 @@ const DEVICESTACK_HOOKS = [
 ];
 
 const FEATURE_KICKERS = [
-  'The Feature That Wins Jobs',
-  'Why This Site Books More',
-  'The Part That Converts',
-  'Built To Get The Call',
-  'The Detail That Closes',
-  'What Turns A Visit Into A Job',
-  'The Feature Owners Ask For',
+  'Take a look',
+  'On the site',
+  'Built in',
+  'This part',
+  'Worth showing',
+  'A closer look',
 ];
 
 const MULTI_KICKERS = [
-  'A Few Reasons It Works',
-  'What Makes This Site Book',
-  'Three Things Done Right',
-  'Why It Converts',
-  'The Parts That Matter',
+  'A few highlights',
+  'Worth a look',
+  'On the site',
+  'A closer look',
 ];
 
 // generic benefit fallbacks (used only if a feature has no site-specific benefit)

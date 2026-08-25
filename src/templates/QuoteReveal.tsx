@@ -4,7 +4,6 @@ import { C, SAFE, FONT_MIN, LOGO } from '../brand/tokens';
 import { F } from '../brand/fonts';
 import { enter, entryStyle, lerp } from '../engine/motion';
 import { Background } from '../components/Background';
-import { Kicker } from '../components/Kicker';
 import type { ReelSpec } from '../engine/schema';
 
 /**
@@ -59,8 +58,8 @@ export const QuoteReveal: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
       <AbsoluteFill style={{ justifyContent: 'flex-end', padding: SAFE.sides, paddingBottom: SAFE.bottom }}>
         <div style={{ ...entryStyle(enter(frame, fps, outroStart - 20, 'smooth'), 'up', 18) }}>
           <div style={{ width: 60, height: 4, background: onDark ? C.redOnDark : C.red, marginBottom: 20 }} />
-          <div style={{ fontFamily: F.mono, fontSize: FONT_MIN.label, letterSpacing: '0.08em',
-            textTransform: 'uppercase', color: muted, marginBottom: 26 }}>
+          <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 28,
+            color: muted, marginBottom: 26 }}>
             {q.attribution}
           </div>
           <Img src={staticFile(onDark ? LOGO.lockupLight : LOGO.lockupDark)} style={{ width: 380 }} />

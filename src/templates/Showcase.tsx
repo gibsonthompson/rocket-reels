@@ -108,7 +108,7 @@ export const Showcase: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
             {spec.cta}
           </div>
           <div style={{
-            fontFamily: F.mono, fontSize: FONT_MIN.label, letterSpacing: '0.1em', textTransform: 'uppercase',
+            fontFamily: F.body, fontWeight: 500, fontSize: 30,
             color: onDark ? C.redOnDark : C.red, marginTop: 30,
             ...entryStyle(enter(frame - outroStart, fps, 22, 'smooth'), 'up', 18),
           }}>

@@ -4,7 +4,6 @@ import { C, SAFE, FONT_MIN, LOGO } from '../brand/tokens';
 import { F } from '../brand/fonts';
 import { enter, entryStyle, lerp, drift } from '../engine/motion';
 import { Background } from '../components/Background';
-import { Kicker } from '../components/Kicker';
 import type { ReelSpec } from '../engine/schema';
 
 /**
@@ -27,14 +26,15 @@ export const StatLine: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
       <Background mode={onDark ? 'dark' : 'light'} />
 
       <AbsoluteFill style={{ padding: SAFE.sides, paddingTop: SAFE.top, justifyContent: 'flex-start' }}>
-        <div style={entryStyle(enter(frame, fps, 2, 'entrance'), 'up', 16)}>
-          <Kicker onDark={onDark}>{spec.kicker}</Kicker>
+        <div style={{ fontFamily: F.display, fontWeight: 600, fontSize: 30, letterSpacing: '-0.01em',
+          color: onDark ? C.redOnDark : C.red, ...entryStyle(enter(frame, fps, 2, 'entrance'), 'up', 16) }}>
+          {spec.kicker}
         </div>
       </AbsoluteFill>
 
       {/* the stat */}
       <AbsoluteFill style={{ justifyContent: 'center', alignItems: 'flex-start', padding: SAFE.sides }}>
-        <div style={{ fontFamily: F.display, fontWeight: 700, fontSize: 300, lineHeight: 0.9,
+        <div style={{ fontFamily: F.display, fontWeight: 700, fontSize: stat.value.length > 3 ? 200 : 300, lineHeight: 0.9,
           letterSpacing: '-0.04em', color: onDark ? C.redOnDark : C.red,
           opacity: lerp(slam, [0, 1]), transform: `scale(${lerp(slam, [0.8, 1])})`, transformOrigin: 'left center' }}>
           {stat.value}

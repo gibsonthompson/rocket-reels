@@ -35,63 +35,85 @@ export const SITES: SiteConfig[] = [
         benefit: 'Customers get a real price in minutes. You get the lead the second they hit send.' },
     ],
     stats: [
-      { value: '2s', label: 'How fast a site should load before a customer leaves.', kicker: 'Speed Wins Jobs' },
+      { value: '2s', label: 'How fast a site should load before a customer leaves.', kicker: 'The math' },
     ],
   },
   {
     slug: 'jblawn', name: 'JB Lawn Care & Hauling', url: 'https://jblawn.vercel.app',
-    imgHeight: 33368, kicker: 'Lawn Care, East Bay', displayUrl: 'jblawncareandhauling.com',
+    imgHeight: 33368, kicker: 'Lawn Care, East Bay CA', displayUrl: 'jblawncareandhauling.com',
     showcaseHook: 'Lawn care that books the job while you work.',
-    features: [],
+    features: [
+      { key: 'areas', label: 'Every Area You Serve', startPct: 0.274, endPct: 0.374, benefit: 'A page for each town, so search puts you on the map.' },
+      { key: 'reviews', label: 'Real Customer Reviews', startPct: 0.528, endPct: 0.632, benefit: 'Proof from real customers, right where it counts.' },
+      { key: 'services', label: 'A Page Per Service', startPct: 0.779, endPct: 0.843, benefit: 'Every service its own page, so each one can rank.' },
+    ],
   },
   {
-    slug: 'greenline', name: 'Green Line Lawn Care', url: 'https://greenline.vercel.app',
-    imgHeight: 9404, kicker: 'Lawn Care', displayUrl: 'greenlinelawncarellc.com',
-    showcaseHook: 'Clean, fast, and built to convert.',
-    features: [],
+    slug: 'greenline', name: 'Green Line Lawn Care', url: 'https://www.greenlinelawncarellc.com/',
+    imgHeight: 36362, displayUrl: 'greenlinelawncarellc.com', kicker: 'Lawn Care, East Bay CA',
+    showcaseHook: 'The best-looking yard on the street starts here.',
+    features: [
+      { key: 'services', label: 'Complete Lawn And Property Care', startPct: 0.075, endPct: 0.185, benefit: 'Everything the yard needs, laid out so customers get it fast.' },
+      { key: 'reviews', label: 'Rated 5.0 By Every Customer', startPct: 0.529, endPct: 0.639, benefit: 'Real reviews, front and center. Proof that closes the next job.' },
+      { key: 'areas', label: 'Where We Work', startPct: 0.756, endPct: 0.83, benefit: 'A page for each area served, so search puts you on the map.' },
+    ],
   },
   {
-    slug: 'eastwood', name: 'Eastwood', url: 'https://eastwood-site.vercel.app',
-    imgHeight: 30782, kicker: 'Home Services', 
+    slug: 'eastwood', name: 'Eastwood Plumbing & Heating', url: 'https://eastwood-site.vercel.app',
+    imgHeight: 30782, kicker: 'Plumbing & HVAC, Gardner MA', 
     showcaseHook: 'A site that looks as good as the work.',
-    features: [],
+    features: [
+      { key: 'services', label: 'A Page Per Service', startPct: 0.152, endPct: 0.259, benefit: 'Every service its own page, so each one can rank.' },
+      { key: 'gallery', label: 'Real Photos Of The Work', startPct: 0.457, endPct: 0.582, benefit: 'The work speaks. Real jobs, not stock photos.' },
+      { key: 'reviews', label: 'Real Customer Reviews', startPct: 0.694, endPct: 0.799, benefit: 'Proof from real customers, right where it counts.' },
+    ],
   },
   {
     slug: 'southern', name: 'Southern Beacon', url: 'https://southern-beacon.vercel.app',
-    imgHeight: 29274, kicker: 'Service Business', displayUrl: 'southernbeaconenvironmental.com',
+    imgHeight: 29274, kicker: 'Mold & Remediation, Atlanta GA', displayUrl: 'southernbeaconenvironmental.com',
     showcaseHook: 'Built to be found and built to convert.',
-    features: [],
+    features: [
+      { key: 'services', label: 'A Page Per Service', startPct: 0.07, endPct: 0.18, benefit: 'Every service its own page, so each one can rank.' },
+      { key: 'gallery', label: 'Real Photos Of The Work', startPct: 0.561, endPct: 0.652, benefit: 'The work speaks. Real jobs, not stock photos.' },
+      { key: 'form', label: 'Free Walk-Through Request', startPct: 0.832, endPct: 0.93, benefit: 'Name, phone, zip, service. The lead lands the moment they submit.' },
+    ],
   },
   {
     slug: 'globalmax', name: 'Global Max Services', url: 'https://global-max-services.vercel.app',
-    imgHeight: 27704, kicker: 'Service Business', displayUrl: 'globalmaxservices.com',
+    imgHeight: 27704, kicker: 'Freight Carrier, Chicago IL', displayUrl: 'globalmaxservices.com',
     showcaseHook: 'A site that works as hard as the crew.',
-    features: [],
+    features: [
+      { key: 'form', label: 'Request A Quote', startPct: 0.823, endPct: 0.93, benefit: 'The form that turns a visitor into a booked job.' },
+    ],
   },
   {
     slug: 'deadhead', name: 'Deadhead Trucking', url: 'https://deadhead-trucking.vercel.app',
-    imgHeight: 15060, kicker: 'Logistics',
+    imgHeight: 15060, kicker: 'Freight Carrier, Chicago IL',
     showcaseHook: 'A site that keeps the trucks full.',
-    features: [],
+    features: [
+      { key: 'form', label: 'Get In Touch', startPct: 0.692, endPct: 0.8, benefit: 'The form that turns a visitor into a booked lead.' },
+    ],
   },
   {
     slug: 'cocina', name: 'La Cocina de Jeannie', url: 'https://la-cocina-de-jeannie.vercel.app',
-    imgHeight: 19078, kicker: 'Restaurant', 
+    imgHeight: 19078, kicker: 'Catering, North Georgia', 
     showcaseHook: 'A menu that makes them hungry.',
     features: [],
   },
   {
     slug: 'gtc', name: 'The GTC Group', url: 'https://gtc-group-website.vercel.app',
-    imgHeight: 11616, kicker: 'Logistics Advisory', displayUrl: 'globaltransportconsultinggroup.com',
+    imgHeight: 11616, kicker: 'Logistics Advisory, Nationwide', displayUrl: 'globaltransportconsultinggroup.com',
     showcaseHook: 'A site that closes carrier deals.',
-    features: [],
+    features: [
+      { key: 'services', label: 'What They Actually Do', startPct: 0.157, endPct: 0.282, benefit: 'The service laid out clearly, so a carrier gets it fast.' },
+    ],
     stats: [
-      { value: '$500M+', label: 'In freight managed. Numbers that build trust on sight.', kicker: 'Proof Up Front' },
+      { value: '$500M+', label: 'In freight managed. Numbers that build trust on sight.', kicker: 'By the numbers' },
     ],
   },
   {
     slug: 'rsa', name: 'Reliable Solutions Atlanta', url: 'https://reliable-solutions-atlanta.vercel.app',
-    imgHeight: 15488, kicker: 'Waterproofing, Atlanta', displayUrl: 'waterhelpme.com',
+    imgHeight: 15488, kicker: 'Waterproofing, Atlanta GA', displayUrl: 'waterhelpme.com',
     showcaseHook: 'A site that turns a leak into a lead.',
     features: [
       { key: 'quote', label: 'Request A Free Quote', startPct: 0.055, endPct: 0.128,
@@ -102,8 +124,12 @@ export const SITES: SiteConfig[] = [
   },
   {
     slug: 'strickland', name: 'Strickland Surface Preparation', url: 'https://www.stricklandsurfacepreparation.com/',
-    imgHeight: 15148, kicker: 'Abrasive Blasting, Hall County GA', displayUrl: 'stricklandsurfacepreparation.com',
+    imgHeight: 15148, kicker: 'Abrasive Blasting, Southeast US', displayUrl: 'stricklandsurfacepreparation.com',
     showcaseHook: 'A site that brings the job to the crew.',
-    features: [],
+    features: [
+      { key: 'services', label: 'A Page Per Service', startPct: 0.109, endPct: 0.234, benefit: 'Every service its own page, so each one can rank.' },
+      { key: 'gallery', label: 'Real Photos Of The Work', startPct: 0.33, endPct: 0.455, benefit: 'The work speaks. Real jobs, not stock photos.' },
+      { key: 'areas', label: 'Every Area You Serve', startPct: 0.805, endPct: 0.872, benefit: 'A page for each town, so search puts you on the map.' },
+    ],
   },
 ];

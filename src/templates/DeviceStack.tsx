@@ -22,10 +22,13 @@ export const DeviceStack: React.FC<{ spec: ReelSpec }> = ({ spec }) => {
   const scale = iw / 860;
   const scaledH = spec.site.imgHeight * scale;
 
-  // front phone shows the homepage hero (top); back shows a shallow second view.
-  // Both stay near the top so the site is recognizable, not deep-page sections.
-  const yA = 0.00 * scaledH + drift(frame, 6, 160);
-  const yB = 0.14 * scaledH + drift(frame + 40, 6, 160);
+  // Front phone shows the homepage hero (top). Back phone shows the content just
+  // below it, offset by ~0.75 of a phone height in REAL pixels (not a fraction of
+  // the whole page, which lands on empty gaps for very tall sites). This keeps the
+  // back phone on real content regardless of page length.
+  const backOffset = (ph - 32) * 0.75;
+  const yA = 0 + drift(frame, 6, 160);
+  const yB = backOffset + drift(frame + 40, 6, 160);
 
   const inA = enter(frame, fps, 6, 'entrance');
   const inB = enter(frame, fps, 16, 'entrance');
