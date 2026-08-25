@@ -72,8 +72,20 @@ const run = async () => {
     try {
       await pg.goto(s.url, { waitUntil: 'networkidle', timeout: 40000 });
       await pg.waitForTimeout(1200);
-      await loadEverything(pg);       // <-- the fix: trigger lazy loading
+      await loadEverything(pg);       // trigger lazy loading
       await pg.waitForTimeout(600);
+      // Neutralize sticky/fixed headers so they sit at the top in the full-page
+      // screenshot instead of floating mid-page (breaks the reel subject).
+      await pg.addStyleTag({ content: `
+        *[style*="position: fixed"], *[style*="position:fixed"],
+        header, nav, .header, .navbar, .nav {
+          position: static !important;
+        }
+        [class*="sticky"], [class*="fixed"] { position: static !important; }
+      ` });
+      await pg.waitForTimeout(300);
+      await pg.evaluate(() => window.scrollTo(0, 0));
+      await pg.waitForTimeout(300);
       const projectPath = path.join(dir, 'full.png');
       const namedPath = path.join(DL, `${s.slug}-full.png`);
       await pg.screenshot({ path: projectPath, fullPage: true });
